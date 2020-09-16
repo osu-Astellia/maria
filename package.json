@@ -1,0 +1,15 @@
+{
+  "name": "maria",
+  "version": "0.0.1",
+  "description": "Hook for mania pp and etc.",
+  "main": "app.js",
+  "repository": "https://github.com/osu-Astellia/maria.git",
+  "author": "= <kotypey@gmail.com>",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mysql2": "^2.1.0",
+    "wifipiano2": "^1.0.1"
+  }
+}
