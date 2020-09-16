@@ -1,7 +1,8 @@
 //#region modules
 const express = require('express');
 const parser = require('body-parser');
-const mysql2 = require('mysql2');
+const mysql2 = require('mysql2/promise');
+const config = require('./config');
 //#endregion modules
 
 
@@ -10,7 +11,7 @@ const mysql2 = require('mysql2');
 class Server {
     constructor(options){
         this.app = express(options || {});
-        this.db = mysql2.createPool(options.db);
+        
 
         //#region app use
         this.app.use(parser.json());
@@ -24,6 +25,8 @@ class Server {
                 })
             }
         })
+
+        this.app.use('/api/keymods', require('./routes/keymods'));
         this.app.use('/api/mania', require('./routes/mania'));
 
         this.app.use((req,res,next) => {
@@ -40,6 +43,7 @@ class Server {
 }
 
 
-new Server(require('./config')).app.listen(23140, () => {
+global.server = new Server(require('./config')).app.listen(23140, async () => {
+    server.db = await mysql2.createPool(config.db);
     console.log('[I] Started Maria server on port 23140!');
 });

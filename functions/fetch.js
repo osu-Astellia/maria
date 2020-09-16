@@ -5,6 +5,7 @@ module.exports = function(url, options){
         if(!options) options = {};
         if(!options.method) options.method = 'GET';
         if(!options.json) options.json = true;
+        if(!options.headers) options.headers = {};
         if(options.body) options.headers['Content-Type'] = 'application/json';
         if(options.query) url = `${url}?${require('querystring').stringify(options.query)}`;
  
